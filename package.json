@@ -8,7 +8,8 @@
     "lint": "eslint . --ext .ts",
     "lint-fix": "eslint . --ext .ts --fix",
     "migrations":"ts-node-dev ./node_modules/typeorm/cli.js",
-    "migrationsRun":"yarn migrations migration:run"
+    "migrationsRun":"yarn migrations migration:run",
+    "docker": "docker-compose --env-file .env.development -f docker-compose.yml up --build --remove-orphans -d"
   },
   "devDependencies": {
     "@types/cors": "^2.8.12",

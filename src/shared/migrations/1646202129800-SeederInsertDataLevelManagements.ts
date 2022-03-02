@@ -6,9 +6,7 @@ type SeedersLevelManagement = {
   label: string;
 };
 
-export class SeederInsertDataLevelManagements1646202129800
-  implements MigrationInterface
-{
+export class SeederInsertDataLevelManagements1646202129800 implements MigrationInterface {
   private date: Array<SeedersLevelManagement> = [
     {
       value: 0,
@@ -34,13 +32,8 @@ export class SeederInsertDataLevelManagements1646202129800
   public async up(): Promise<void> {
     await Promise.all(
       this.date.map(async item => {
-        const levelManagementRepository = getCustomRepository(
-          LevelManagementRepository
-        );
-        await levelManagementRepository.createLevelManagement(
-          item.value,
-          item.label
-        );
+        const levelManagementRepository = getCustomRepository(LevelManagementRepository);
+        await levelManagementRepository.createLevelManagement(item.value, item.label);
       })
     );
   }
@@ -48,9 +41,7 @@ export class SeederInsertDataLevelManagements1646202129800
   public async down(): Promise<void> {
     await Promise.all(
       this.date.map(async item => {
-        const levelManagementRepository = getCustomRepository(
-          LevelManagementRepository
-        );
+        const levelManagementRepository = getCustomRepository(LevelManagementRepository);
         await levelManagementRepository.deleteLevelManagement(item.value);
       })
     );

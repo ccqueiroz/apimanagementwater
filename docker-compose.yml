@@ -1,0 +1,19 @@
+version: '3.7'
+
+services:
+  db:
+    image: postgres
+    restart: unless-stopped
+    volumes:
+      - db-volume:/var/lib/postgresql/data
+    ports:
+      - "${DB_PORT}:5432"
+    environment:
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_DATABASE}
+  volumes:
+    db-volume:
+      name: "${APP_NAME}-db-volume"
+  app-network:
+    name: '${APP_NAME}-network'

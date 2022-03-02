@@ -1,6 +1,6 @@
 <h1 align="center"> Management Water - Backend </h1>
 
-## align="center">Backend para o sistema Management Water.
+<h2 align="center">Backend para o sistema Management Water.</h2>
 <h3 align="center">Sistema este que servirá para gestão de fluxo e vendas para depósitos de águas minerais.</h3>
 
 ## Estrutura de pastas:

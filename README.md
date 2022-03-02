@@ -21,8 +21,9 @@
 
 <h2 align="center">Executando a aplicação</h2>
 Faça um clone deste repositório e instale no seu ambiente de desenvolvimento usando o seguinte comando no seu terminal:
+
 ````
-  git clone https://github.com/aluiziodeveloper/api-vendas.git
+https://github.com/ccqueiroz/apimanagementwater.git
 ````
 Após clonar o conteúdo do repositório, acesse o diretório criado e efetue a instalação das dependências:
 

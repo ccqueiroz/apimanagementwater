@@ -3,7 +3,10 @@ import { LevelManagement } from '../entities/LevelManagement';
 
 @EntityRepository(LevelManagement)
 class LevelManagementRepository extends Repository<LevelManagement> {
-  public async createLevelManagement(value: number, label: string) {
+  public async createLevelManagement(
+    value: number,
+    label: string
+  ): Promise<LevelManagement | boolean> {
     const findLevel = await this.findOneLevelManagement(value);
 
     if (findLevel) {
@@ -18,7 +21,9 @@ class LevelManagementRepository extends Repository<LevelManagement> {
     return levelManagement;
   }
 
-  public async findOneLevelManagement(value: number) {
+  public async findOneLevelManagement(
+    value: number
+  ): Promise<LevelManagement | undefined> {
     const findLevel = await this.findOne({
       where: {
         value,
@@ -28,10 +33,12 @@ class LevelManagementRepository extends Repository<LevelManagement> {
     return findLevel;
   }
 
-  public async deleteLevelManagement(value: number) {
+  public async deleteLevelManagement(
+    value: number
+  ): Promise<LevelManagement | boolean> {
     const findLevel = await this.findOneLevelManagement(value);
 
-    if (findLevel) {
+    if (!findLevel) {
       return false;
     }
 

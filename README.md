@@ -23,12 +23,12 @@
 Faça um clone deste repositório e instale no seu ambiente de desenvolvimento usando o seguinte comando no seu terminal:
 
 ````
-https://github.com/ccqueiroz/apimanagementwater.git
+git clone -b master --single-branch https://github.com/ccqueiroz/apimanagementwater.git
 ````
 Após clonar o conteúdo do repositório, acesse o diretório criado e efetue a instalação das dependências:
 
 ````
-  cd api-vendas
+  cd apimanagementwater
 
   yarn
 

@@ -7,9 +7,12 @@
     "dev": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules src/shared/http/server.ts",
     "lint": "eslint . --ext .ts",
     "lint-fix": "eslint . --ext .ts --fix",
-    "migrations":"ts-node-dev ./node_modules/typeorm/cli.js",
-    "migrationsRun":"yarn migrations migration:run",
-    "docker": "docker-compose --env-file .env.development -f docker-compose.yml up --build --remove-orphans -d"
+    "typeorm": "node --require ts-node/register ./node_modules/typeorm/cli.js",
+    "migrations": "yarn typeorm migration:generate -n",
+    "migrationsRun": "yarn typeorm migration:run",
+    "showMigrations": "yarn typeorm migration:show",
+    "docker": "docker-compose --env-file .env.development -f docker-compose.yml up --build --remove-orphans -d",
+    "createSeed": "node src/shared/seeders/scriptSeeders/index.js"
   },
   "devDependencies": {
     "@types/cors": "^2.8.12",
@@ -25,6 +28,7 @@
     "eslint-plugin-prettier": "3.2.0",
     "eslint-plugin-react": "^7.29.2",
     "eslint-plugin-react-hooks": "^4.3.0",
+    "mkdirp": "^1.0.4",
     "prettier": "^2.5.1",
     "ts-node-dev": "^1.1.8",
     "tsconfig-paths": "^3.12.0",

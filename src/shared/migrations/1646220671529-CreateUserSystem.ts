@@ -27,40 +27,44 @@ export class CreateUserSystem1646220671529 implements MigrationInterface {
             type: 'uuid',
           },
           {
-            name: 'LevelManagementId',
+            name: 'levelManagementId',
             type: 'uuid',
           },
+          {
+            name: 'created_at',
+            type: 'timestamp with time zone',
+            default: 'now()',
+          },
+          {
+            name: 'updated_at',
+            type: 'timestamp with time zone',
+            default: 'now()',
+          },
         ],
-      })
-    );
-
-    await queryRunner.createForeignKey(
-      'userSystem',
-      new TableForeignKey({
-        columnNames: ['companyId'],
-        referencedColumnNames: ['id'],
-        referencedTableName: 'company',
-        onDelete: 'cascade',
-      })
-    );
-
-    await queryRunner.createForeignKey(
-      'userSystem',
-      new TableForeignKey({
-        columnNames: ['LevelManagementId'],
-        referencedColumnNames: ['id'],
-        referencedTableName: 'levelManagement',
-        onDelete: 'cascade',
+        foreignKeys: [
+          {
+            columnNames: ['companyId'],
+            referencedColumnNames: ['id'],
+            referencedTableName: 'company',
+          },
+          {
+            columnNames: ['levelManagementId'],
+            referencedColumnNames: ['id'],
+            referencedTableName: 'levelManagement',
+          },
+        ],
       })
     );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
     const table = await queryRunner.getTable('userSystem');
-    const foreignKey = table?.foreignKeys.find(fk => fk.columnNames.indexOf('questionId') !== -1);
-    await queryRunner.dropForeignKey('userSystem', foreignKey as TableForeignKey);
+    const foreignKeyCompany = table?.foreignKeys.find(fk => fk.columnNames.indexOf('companyId') !== -1);
+    const foreignKeyLevelManagement = table?.foreignKeys.find(fk => fk.columnNames.indexOf('levelManagementId') !== -1);
+    await queryRunner.dropForeignKey('userSystem', foreignKeyCompany as TableForeignKey);
+    await queryRunner.dropForeignKey('userSystem', foreignKeyLevelManagement as TableForeignKey);
     await queryRunner.dropColumn('userSystem', 'companyId');
-    await queryRunner.dropColumn('userSystem', 'valueLevelManagement');
+    await queryRunner.dropColumn('userSystem', 'levelManagementId');
     await queryRunner.dropTable('userSystem');
   }
 }
